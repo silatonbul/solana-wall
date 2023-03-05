@@ -64,6 +64,7 @@ const App = () => {
           <p className="sub-text">
             Protect memories with your personal Solana Wall!
           </p>
+          {renderNotConnectedContainer()}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
