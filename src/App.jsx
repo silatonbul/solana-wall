@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 
@@ -7,6 +7,8 @@ const TWITTER_HANDLE = 'silatonbul_';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
+
+  const [walletAddress, setWalletAddress] = useState(null);
   /*
    * This function holds the logic for deciding if a Phantom Wallet is
    * connected or not
@@ -24,6 +26,9 @@ const App = () => {
       'Connected with Public Key:',
       response.publicKey.toString()
     );
+
+    setWalletAddress(response.publicKey.toString());
+      
     } else {
       alert(' 👻 You need Phantom Wallet! 👻 ');
     }
@@ -33,7 +38,15 @@ const App = () => {
    * When our component first mounts, let's check to see if we have a connected
    * Phantom Wallet
    */
-  const connectWallet = async () => {};
+  const connectWallet = async () => {
+  const { solana } = window;
+
+  if (solana) {
+    const response = await solana.connect();
+    console.log('Connected with Public Key:', response.publicKey.toString());
+    setWalletAddress(response.publicKey.toString());
+  }
+};
 
   /*
    * We want to render this UI when the user hasn't connected
@@ -58,13 +71,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="container">
+      <div className={walletAddress ? 'authed-container' : 'container'}>
         <div className="header-container">
           <p className="header">Solana Wall</p>
           <p className="sub-text">
             Protect memories with your personal Solana Wall!
           </p>
-          {renderNotConnectedContainer()}
+          {!walletAddress && renderNotConnectedContainer()}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
