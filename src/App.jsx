@@ -171,7 +171,7 @@ const renderConnectedContainer = () => {
         >
           <input
             type="text"
-            placeholder="Enter gif link!"
+            placeholder="Enter photo link!"
             value={inputValue}
             onChange={onInputChange}
           />
