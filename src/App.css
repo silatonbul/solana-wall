@@ -53,7 +53,7 @@
 }
 
 .connect-wallet-button {
-  background: -webkit-linear-gradient(left, #60c657, #35aee2);
+  background: -webkit-linear-gradient(left, #90abd0, #120120);
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
 }
@@ -77,12 +77,12 @@
 }
 
 .twitter-logo {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
 }
 
 .footer-text {
-  color: white;
+  color: lightblue;
   font-size: 16px;
   font-weight: bold;
 }
